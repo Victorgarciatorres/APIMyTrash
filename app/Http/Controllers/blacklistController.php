@@ -47,9 +47,10 @@ class blacklistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $blacklist = Blacklist::where('user_id',$request->user_id)->get();
+        return $blacklist;
     }
 
     /**
@@ -83,6 +84,7 @@ class blacklistController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $blacklist = Blacklist::where('blacklist_id',$request->blacklist_id)->first();
+        $blacklist->delete();
     }
 }

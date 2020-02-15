@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use App\Location;
 
 class Container extends Model
 {
@@ -24,6 +25,14 @@ class Container extends Model
     
     public function getContainers(){
         $containers = self::all();
-        return $containers;
+
+        // foreach ($containers as $key => $value) {
+
+        //     $location = Location::where('id',$request->location_id)->first();
+        //     var_dump($location);exit;
+        //     $latitude = $location->latitude;
+
+        // }
+        // return $containers;
     }
 }

@@ -14,7 +14,6 @@ class Location extends Model
 
     public function createLocation(Request $request)
     {
-        //var_dump($request->name);exit();
         $location = new Location();
         $location->latitude = $request->latitude;
         $location->longitude = $request->longitude;

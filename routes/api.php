@@ -22,3 +22,6 @@ Route::apiResource('product','productController');
 Route::apiResource('blacklist','blacklistController');
 Route::apiResource('brand','brandController');
 Route::apiResource('user','userController');
+Route::apiResource('product','productController');
+
+Route::post('showProductBanned','productController@showProductBanned');

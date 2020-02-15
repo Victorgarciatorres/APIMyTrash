@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Http\Controllers\blacklistController;
 
 class productController extends Controller
 {
@@ -45,15 +46,48 @@ class productController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
+        $blacklist = new blacklistController();
+        $blacklists = $blacklist->show($request);
+
+
         $product = new Product();
         $products = $product->getProducts();
-        if(isset($products)){
-            return response()->json([$products],200);
-        }else{
-            return response()->json(["Error" => "No hay productos guardados"]);
+
+
+        foreach ($products as $key => $product) {
+            foreach ($blacklists as $key => $value) {
+                if ($product->id == $value->product_id) {
+                    $product->{"banned"} = true;
+                    break;
+                }else{
+                    $product->{"banned"} = false;
+                }
+            }
         }
+        return $products;
+    }
+
+    public function showProductBanned(Request $request)
+    {
+        $blacklist = new blacklistController();
+        $blacklists = $blacklist->show($request);
+
+
+        $product = new Product();
+        $products = $product->getProducts();
+
+        $productsBanned =array();
+
+        foreach ($products as $key => $product) {
+            foreach ($blacklists as $key => $value) {
+                if ($product->id == $value->product_id) {
+                    array_push($productsBanned, $product);
+                }
+            }
+        }
+        return $productsBanned;
     }
 
     /**
