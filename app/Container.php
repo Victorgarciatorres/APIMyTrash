@@ -13,7 +13,6 @@ class Container extends Model
 
     public function createContainer(Request $request)
     {
-        //var_dump($request->name);exit();
         $container = new Container;
         $container->name = $request->name;
         $container->icon = $request->icon;
@@ -22,5 +21,9 @@ class Container extends Model
         $container->location_id = $request->location_id;
         $container->save();
     }
-
+    
+    public function getContainers(){
+        $containers = self::all();
+        return $containers;
+    }
 }

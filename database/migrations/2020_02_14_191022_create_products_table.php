@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('contaminate');
 
             $table->Integer('container_id')->unsigned();
-            $table->Integer('brand_id')->unsigned();
+            $table->Integer('brand_id')->unsigned()->nullable();
 
 
 

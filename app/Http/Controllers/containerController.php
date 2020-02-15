@@ -49,7 +49,13 @@ class containerController extends Controller
      */
     public function show($id)
     {
-        //
+        $container = new Container();
+        $containers = $container->getContainers();
+        if(isset($containers)){
+            return response()->json(["Success" => $containers]);
+        }else{
+            return response()->json(["Error" => "No hay contenedores guardadas"]);
+        }
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class productController extends Controller
 {
@@ -34,7 +35,8 @@ class productController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new product();
+        $product->createProduct($request);
     }
 
     /**
@@ -45,7 +47,13 @@ class productController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = new Product();
+        $products = $product->getProducts();
+        if(isset($products)){
+            return response()->json([$products],200);
+        }else{
+            return response()->json(["Error" => "No hay productos guardados"]);
+        }
     }
 
     /**

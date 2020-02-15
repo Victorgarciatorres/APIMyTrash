@@ -18,3 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::apiResource('container','containerController');
 Route::apiResource('location','locationController');
+Route::apiResource('product','productController');
+Route::apiResource('blacklist','blacklistController');
+Route::apiResource('brand','brandController');
+Route::apiResource('user','userController');

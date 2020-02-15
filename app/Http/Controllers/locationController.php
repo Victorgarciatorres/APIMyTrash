@@ -48,7 +48,13 @@ class locationController extends Controller
      */
     public function show($id)
     {
-        //
+        $location = new Location();
+        $locations = $location->getLocations();
+        if(isset($locations)){
+            return response()->json([$locations],200);
+        }else{
+            return response()->json(["Error" => "No hay localizaciones guardadas"]);
+        }
     }
 
     /**

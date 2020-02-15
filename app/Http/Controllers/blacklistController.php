@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Blacklist;
+
 class blacklistController extends Controller
 {
     /**
@@ -34,7 +36,9 @@ class blacklistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $blacklist = new Blacklist();
+        $blacklist->createBlacklist($request);
     }
 
     /**

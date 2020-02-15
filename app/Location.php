@@ -20,4 +20,9 @@ class Location extends Model
         $location->longitude = $request->longitude;
         $location->save();
     }
+
+    public function getLocations(){
+        $locations = self::all();
+        return $locations;
+    }
 }
